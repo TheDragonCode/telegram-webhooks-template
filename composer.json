@@ -1,0 +1,73 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "license": "MIT",
+    "type": "project",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-pdo": "*",
+        "defstudio/telegraph": "^1.33",
+        "doctrine/dbal": "^3.6",
+        "dragon-code/laravel-actions": "^4.2",
+        "dragon-code/laravel-http-logger": "^1.3",
+        "dragon-code/laravel-json-response": "^2.4",
+        "dragon-code/support": "^6.11",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel-lang/common": "^3.1",
+        "laravel/framework": "^10.1",
+        "laravel/sanctum": "^3.2",
+        "sentry/sentry-laravel": "^3.2"
+    },
+    "require-dev": {
+        "dragon-code/env-sync-laravel": "^2.4",
+        "dragon-code/pretty-routes": "^3.3",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/telescope": "^4.14",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "dragon-code/codestyler": true,
+            "ergebnis/composer-normalize": true,
+            "friendsofphp/php-cs-fixer": true
+        },
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "php artisan vendor:publish --tag=telescope-assets --ansi --force",
+            "php artisan lang:update --ansi",
+            "php artisan env:sync --with-env --ansi",
+            "php artisan optimize:clear --ansi"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "php artisan package:discover --ansi"
+        ]
+    }
+}

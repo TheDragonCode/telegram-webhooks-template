@@ -1,0 +1,28 @@
+POST {{host}}/telegraph/{{token}}/webhook
+Accept: application/json
+Content-Type: application/json
+
+{
+    "message": {
+        "chat": {
+            "id": 123,
+            "type": "private",
+            "username": "john-doe",
+            "last_name": "Doe",
+            "first_name": "John"
+        },
+        "date": 1676895952,
+        "from": {
+            "id": 123,
+            "is_bot": false,
+            "username": "john-doe",
+            "last_name": "Doe",
+            "first_name": "John",
+            "language_code": "en"
+        },
+        "text": "/start",
+        "entities": [{ "type": "bot_command", "length": 6, "offset": 0 }],
+        "message_id": 1
+    },
+    "update_id": 466467054
+}

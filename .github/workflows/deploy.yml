@@ -1,0 +1,40 @@
+name: deploy
+
+on:
+    release:
+        types:
+            - released
+    
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v3
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, gd, redis, pdo_mysql, json
+                    coverage: none
+
+            -   name: Install dependencies
+                run: composer install
+
+            -   name: Run tests
+                run: sudo php artisan test
+
+            -   name: Deploy
+                uses: deployphp/action@v1
+                env:
+                    TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+                    TELEGRAM_LOGS_CHAT_ID: ${{ secrets.TELEGRAM_LOGS_CHAT_ID }}
+                with:
+                    private-key: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+                    known-hosts: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+                    dep: deploy production --revision=${{ github.sha }}
+                    deployer-version: 7.2.1
