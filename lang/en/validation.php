@@ -22,6 +22,7 @@ return [
         'string'  => 'This field must be between :min and :max characters.',
     ],
     'boolean'              => 'This field must be true or false.',
+    'can'                  => 'This field contains an unauthorized value.',
     'confirmed'            => 'This field confirmation does not match.',
     'current_password'     => 'The password is incorrect.',
     'date'                 => 'This field is not a valid date.',
