@@ -17,7 +17,7 @@ it('should send a welcome text', function () {
 
     $count = 3;
 
-    for ($i = 0; $i < $count; $i++) {
+    for ($i = 0; $i < $count; ++$i) {
         postJson(webhook(), webhookMessage('start'))->assertSuccessful();
     }
 

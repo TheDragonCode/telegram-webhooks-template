@@ -45,26 +45,26 @@ function webhook(Bot|string|null $token = null): string
     ]);
 }
 
-function webhookMessage(string|int $text, bool $isCommand = true): array
+function webhookMessage(int|string $text, bool $isCommand = true): array
 {
     return [
-        'message'   => [
-            'chat'       => [
+        'message' => [
+            'chat' => [
                 'id'         => 12345,
                 'type'       => 'private',
                 'username'   => fake()->userName,
                 'first_name' => fake()->firstName,
                 'last_name'  => fake()->lastName,
             ],
-            'from'       => [
+            'from' => [
                 'id'         => fake()->randomNumber(),
                 'is_bot'     => false,
                 'username'   => fake()->userName,
                 'first_name' => fake()->firstName,
                 'last_name'  => fake()->lastName,
             ],
-            'text'       => $isCommand ? Str::start($text, '/') . ' qwerty' : $text,
-            'entities'   => $isCommand ? [
+            'text'     => $isCommand ? Str::start($text, '/') . ' qwerty' : $text,
+            'entities' => $isCommand ? [
                 [
                     'type'   => 'bot_command',
                     'length' => Str::length($text) + 1,

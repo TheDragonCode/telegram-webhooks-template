@@ -22,7 +22,7 @@ it('should send information about the invalid message', function () {
 
     $count = 3;
 
-    for ($i = 0; $i < $count; $i++) {
+    for ($i = 0; $i < $count; ++$i) {
         postJson(webhook($bot), webhookMessage('09:12', false))->assertSuccessful();
     }
 
