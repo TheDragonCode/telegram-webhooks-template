@@ -10,7 +10,7 @@ use App\Services\Processors\Text;
 use DefStudio\Telegraph\Handlers\WebhookHandler;
 use Illuminate\Support\Stringable;
 
-class FooBot extends WebhookHandler
+class ExampleBot extends WebhookHandler
 {
     public function start(): void
     {

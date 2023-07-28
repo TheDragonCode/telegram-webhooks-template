@@ -2,6 +2,7 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache"
          colors="true"
 >
     <testsuites>
@@ -13,9 +14,11 @@
         </testsuite>
     </testsuites>
     <coverage>
-        <include>
-            <directory suffix=".php">./app</directory>
-        </include>
+        <report>
+            <clover outputFile="build/logs/clover.xml" />
+            <html outputDirectory="build/logs/coverage" />
+            <text outputFile="build/logs/coverage.txt" />
+        </report>
     </coverage>
     <php>
         <env name="APP_ENV" value="testing" />
@@ -28,5 +31,7 @@
         <env name="QUEUE_CONNECTION" value="sync" />
         <env name="SESSION_DRIVER" value="array" />
         <env name="TELESCOPE_ENABLED" value="false" />
+        <env name="TELEGRAM_BOT_TOKEN" value="1234567890:AAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx4" />
+        <env name="TELEGRAM_BOT_NAME" value="ExampleBot" />
     </php>
 </phpunit>
