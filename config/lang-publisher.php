@@ -66,12 +66,12 @@ return [
         ],
 
         'locales' => [
-            //Locales::FRENCH->value => [
+            // Locales::FRENCH->value => [
             //    'double_quote_opener' => '“',
             //    'double_quote_closer' => '”',
             //    'single_quote_opener' => '‘',
             //    'single_quote_closer' => '’',
-            //],
+            // ],
 
             Locales::RUSSIAN->value => [
                 'double_quote_opener' => '«',
@@ -104,8 +104,8 @@ return [
      */
 
     'aliases' => [
-        //\LaravelLang\Publisher\Constants\Locales::GERMAN->value => 'de-DE',
+        // \LaravelLang\Publisher\Constants\Locales::GERMAN->value => 'de-DE',
         //
-        //\LaravelLang\Publisher\Constants\Locales::GERMAN_SWITZERLAND->value => 'de-CH',
+        // \LaravelLang\Publisher\Constants\Locales::GERMAN_SWITZERLAND->value => 'de-CH',
     ],
 ];

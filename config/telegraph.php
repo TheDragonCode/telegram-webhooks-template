@@ -12,13 +12,13 @@ return [
      * Telegram api base url, it can be overridden
      * for self-hosted servers
      */
-    'telegram_api_url'                => 'https://api.telegram.org/',
+    'telegram_api_url' => 'https://api.telegram.org/',
 
     /*
      * Sets Telegraph messages default parse mode
      * allowed values: html|markdown|MarkdownV2
      */
-    'default_parse_mode'              => Telegraph::PARSE_MARKDOWNV2,
+    'default_parse_mode' => Telegraph::PARSE_MARKDOWNV2,
 
     /*
      * Sets the handler to be used when Telegraph
@@ -26,7 +26,7 @@ return [
      *
      * For reference, see https://defstudio.github.io/telegraph/webhooks/overview
      */
-    'webhook_handler'                 => TelegraphHandler::class,
+    'webhook_handler' => TelegraphHandler::class,
 
     /*
      * Sets a custom domain when registering a webhook. This will allow a local telegram bot api server
@@ -40,7 +40,7 @@ return [
      * If enabled, Telegraph dumps received
      * webhook messages to logs
      */
-    'debug_mode'                      => (bool) config('app.debug'),
+    'debug_mode' => (bool) config('app.debug'),
 
     /*
      * If enabled, unknown webhook commands are
@@ -53,13 +53,13 @@ return [
         'allow_callback_queries_from_unknown_chats' => true,
 
         // if enabled, allows messages and commands from unregistered chats
-        'allow_messages_from_unknown_chats'         => true,
+        'allow_messages_from_unknown_chats' => true,
 
         // if enabled, store unknown chats as new TelegraphChat models
-        'store_unknown_chats_in_db'                 => true,
+        'store_unknown_chats_in_db' => true,
     ],
 
-    'bot'    => [
+    'bot' => [
         'token' => env('TELEGRAM_BOT_TOKEN'),
         'name'  => env('TELEGRAM_BOT_NAME'),
     ],
@@ -81,7 +81,7 @@ return [
         'default' => 'cache',
 
         'stores' => [
-            'file'  => [
+            'file' => [
                 /*
                  * Telegraph cache driver to be used, must implement
                  * DefStudio\Telegraph\Contracts\StorageDriver contract
@@ -92,23 +92,23 @@ return [
                  * Laravel Storage disk to use. See /config/filesystems/disks for available disks
                  * If 'null', Laravel default store will be used,
                  */
-                'disk'   => 'local',
+                'disk' => 'local',
 
                 // Folder inside filesystem to be used as root for Telegraph storage
-                'root'   => 'telegraph',
+                'root' => 'telegraph',
             ],
             'cache' => [
                 /*
                  * Telegraph cache driver to be used, must implement
                  * DefStudio\Telegraph\Contracts\StorageDriver contract
                  */
-                'driver'     => CacheStorageDriver::class,
+                'driver' => CacheStorageDriver::class,
 
                 /*
                  * Laravel Cache store to use. See /config/cache/stores for available stores
                  * If 'null', Laravel default store will be used,
                  */
-                'store'      => null,
+                'store' => null,
 
                 // Prefix to be prepended to cache keys
                 'key_prefix' => 'tgph',

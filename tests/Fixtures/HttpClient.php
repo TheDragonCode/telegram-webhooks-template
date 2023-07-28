@@ -26,7 +26,7 @@ trait HttpClient
     {
         Http::assertSent(function (Request $request) use ($message) {
             return $request->url() == $this->telegramUrl(Telegraph::ENDPOINT_MESSAGE)
-                //&& dump([$request->body(), $this->telegramContent($message)])
+                // && dump([$request->body(), $this->telegramContent($message)])
                 && $request->body() == $this->telegramContent($message);
         });
     }

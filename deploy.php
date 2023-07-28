@@ -1,13 +1,15 @@
 <?php
 
-//@formatter:off
+// @formatter:off
 
 declare(strict_types=1);
 
 namespace Deployer;
 
 require 'contrib/php-fpm.php';
+
 require 'contrib/telegram.php';
+
 require 'recipe/laravel.php';
 
 // Config

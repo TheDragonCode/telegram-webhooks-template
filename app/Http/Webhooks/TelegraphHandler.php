@@ -4,50 +4,40 @@ declare(strict_types=1);
 
 namespace App\Http\Webhooks;
 
-use App\Processors\Base;
-use App\Processors\Start;
-use App\Processors\Text;
+use DefStudio\Telegraph\Handlers\EmptyWebhookHandler;
 use DefStudio\Telegraph\Handlers\WebhookHandler;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Stringable;
+use DefStudio\Telegraph\Models\TelegraphBot;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use LaravelLang\Publisher\Facades\Helpers\Locales;
 
 class TelegraphHandler extends WebhookHandler
 {
-    public function start(): void
+    protected string $default = EmptyWebhookHandler::class;
+
+    public function handle(Request $request, TelegraphBot $bot): void
     {
         $this->setLocale();
-        $this->process(Start::class);
+        $this->callHandler($request, $bot);
     }
 
-    protected function handleChatMessage(Stringable $text): void
+    protected function callHandler(Request $request, TelegraphBot $bot): void
     {
-        $this->setLocale();
+        $handler = $this->detectHandler($bot);
 
-        if (! $this->hasMessage()) {
-            $this->disallow();
-
-            return;
-        }
-
-        DB::transaction(
-            fn () => $this->process(Text::class)
-        );
+        (new $handler())->handle($request, $bot);
     }
 
-    protected function hasMessage(): bool
+    protected function detectHandler(TelegraphBot $bot): string|WebhookHandler
     {
-        return $this->request->has('message');
+        $class = 'App\Http\Webhooks\Bots\\' . $this->botClassName($bot);
+
+        return class_exists($class) ? $class : $this->default;
     }
 
-    protected function disallow(): void
+    protected function botClassName(TelegraphBot $bot): string
     {
-        $this->chat->markdownV2(__('telegram.message_type_not_supported'));
-    }
-
-    protected function process(Base|string $processor): void
-    {
-        (new $processor($this->bot, $this->chat, $this->message))->handle();
+        return Str::of($bot->name)->trim()->studly()->toString();
     }
 
     protected function setLocale(): void

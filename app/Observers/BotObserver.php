@@ -17,4 +17,9 @@ class BotObserver
     {
         $bot->unregisterWebhook()->send();
     }
+
+    public function restored(TelegraphBot $bot): void
+    {
+        $bot->registerWebhook()->send();
+    }
 }

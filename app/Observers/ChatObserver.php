@@ -6,17 +6,22 @@ namespace App\Observers;
 
 use App\Models\Chat;
 use Illuminate\Support\Arr;
+use Throwable;
 
 class ChatObserver
 {
-    public function created(Chat $chat): void
+    public function creating(Chat $chat): void
     {
         $chat->name = $this->name($chat);
-        $chat->saveQuietly();
     }
 
     protected function name(Chat $chat): string
     {
-        return Arr::get($chat->info(), 'username', $chat->id);
+        try {
+            return Arr::get($chat->info(), 'username', $chat->id);
+        }
+        catch (Throwable) {
+            return $chat->name;
+        }
     }
 }

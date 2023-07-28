@@ -5,8 +5,7 @@ declare(strict_types=1);
 use App\Models\Bot;
 use DragonCode\LaravelActions\Action;
 
-return new class () extends Action
-{
+return new class extends Action {
     public function __invoke(): void
     {
         $this->create($this->token(), $this->name());
