@@ -40,7 +40,7 @@
         "dragon-code/laravel-json-response": "^2.4",
         "dragon-code/support": "^6.11.2",
         "guzzlehttp/guzzle": "^7.7",
-        "laravel-lang/common": "^3.1.1",
+        "laravel-lang/common": "^4.0",
         "laravel/framework": "^10.16.1",
         "laravel/sanctum": "^3.2.5",
         "sentry/sentry-laravel": "^3.6.1"
