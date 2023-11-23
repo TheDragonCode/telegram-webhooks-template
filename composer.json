@@ -10,14 +10,6 @@
     "authors": [],
     "funding": [
         {
-            "type": "github",
-            "url": "https://github.com/sponsors/TheDragonCode"
-        },
-        {
-            "type": "open_collective",
-            "url": "https://opencollective.com/dragon-code"
-        },
-        {
             "type": "boosty",
             "url": "https://boosty.to/dragon-code"
         },
@@ -72,10 +64,10 @@
     },
     "config": {
         "allow-plugins": {
-            "php-http/discovery": true,
             "dragon-code/codestyler": true,
             "ergebnis/composer-normalize": true,
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         },
         "optimize-autoloader": true,
         "preferred-install": "dist",
